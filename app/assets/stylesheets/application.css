@@ -186,18 +186,34 @@ footer { padding:5rem var(--page-edge) 2rem; color:white; background:#050617; }
   .footer-grid { grid-template-columns:1fr; gap:2rem; }
   .mega-menu-links { grid-template-columns:1fr; }
 }
-.hero-scroll { position:relative; height:450svh; background:#040a22; }
+.hero-scroll { position:relative; height:690svh; background:#040a22; }
 .hero-scroll .hero { position:sticky; top:0; height:100svh; min-height:0; padding:clamp(125px,18vh,200px) var(--page-edge) 4rem; background:#040a22; font-family:"Lato",sans-serif; }
 .hero-scroll .hero-copy { width:min(100%,1000px); }
 .hero-scroll .hero h1 { font:400 clamp(44px,6.15vw,88px)/1.12 "Lato",sans-serif; letter-spacing:0; }
 .hero-scroll .hero-subtitle { max-width:630px; margin:1.65rem 0 1rem; font:400 clamp(21px,2.3vw,30px)/1.13 "Lato",sans-serif; }
 .hero-scroll .particle-infinity { top:0; left:50%; width:100%; height:100%; pointer-events:none; opacity:.72; }
 .hero-stories { position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; z-index:3; }
-.hero-story { grid-area:1/1; width:min(760px,calc(100% - 48px)); padding:clamp(24px,4vw,56px); border:1px solid #324258; border-radius:20px; background:rgba(4,14,36,.96); opacity:0; color:white; will-change:transform,opacity; }
+.hero-story { grid-area:1/1; width:min(850px,calc(100% - 48px)); padding:clamp(24px,4vw,48px); border:0; border-radius:24px; background:rgba(4,10,34,.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); opacity:0; color:white; will-change:transform,opacity; }
 .hero-story:not([inert]) { pointer-events:auto; }
 .hero-story .eyebrow { color:var(--lime); display:flex; justify-content:space-between; }
-.hero-story h2 { font:400 clamp(28px,3.5vw,48px)/1.12 "Lato",sans-serif; margin:24px 0; }
+.hero-story h2 { font:400 clamp(28px,3.5vw,48px)/1.12 "Lato",sans-serif; margin:0 0 24px; color:var(--lime); }
 .hero-story > p:not(.eyebrow) { font-size:clamp(17px,1.7vw,22px); line-height:1.5; color:#c7d7e5; }
 .hero-story a { display:flex; justify-content:space-between; padding-top:24px; margin-top:24px; border-top:1px solid #324258; color:var(--lime); }
 @media (max-width:650px) { .site-header.is-scrolled { min-height:72px; } .hero-scroll .hero { padding-top:115px; } .hero-scroll .hero h1 { font-size:clamp(35px,8.4vw,48px); } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { animation:none!important; transition:none!important; } }
+.hero-story-body { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:flex-end; gap:16px 24px; }
+.hero-story-body p { flex:1 1 420px; margin:0; color:#e0e8ee; font-size:clamp(17px,1.7vw,22px); line-height:1.5; }
+.concept-button { border:0; background:#36b5e5; color:#04122b; border-radius:6px; padding:12px 20px; font:700 15px/1.2 "Lato",sans-serif; white-space:nowrap; cursor:pointer; transition:background .2s,box-shadow .2s; }
+.concept-button:hover { background:#72cff0; box-shadow:0 3px 9px #00152b24; }
+.concept-button:focus-visible { outline:3px solid #168bc0; outline-offset:4px; }
+.team { background:#fff; color:#090d29; font-family:"Lato",sans-serif; scroll-margin-top:100px; }
+.team > h2 { text-align:center; font:400 clamp(36px,4vw,58px)/1.15 "Lato",sans-serif; margin:0 0 90px; }
+.team-masonry { columns:3; column-gap:32px; padding:56px 0 0; }
+.team-card { position:relative; display:inline-block; width:100%; margin:0 0 88px; break-inside:avoid; padding:0; border-radius:14px; background:var(--navy-soft); color:white; box-shadow:0 3px 8px #06153212,0 12px 30px #0615320c; vertical-align:top; }
+.team-card-heading { position:relative; margin:0; padding:80px 28px 28px; border-radius:14px 14px 0 0; background:var(--blue); }
+.team-card-heading img { position:absolute; left:50%; top:0; transform:translate(-50%,-50%); width:112px; height:112px; object-fit:contain; padding:8px; background:#e2f5fb; border-radius:50%; border:5px solid var(--lime); box-shadow:0 3px 12px #06153218; }
+.team-card-heading h3 { margin:0 0 8px; color:var(--lime); font:700 21px/1.15 "Lato",sans-serif; }
+.team-card-heading p { margin:0; color:white; font-size:14px; font-style:italic; line-height:1.4; }
+.team-bio { font-size:17px; line-height:1.65; color:white; margin:0; padding:28px; border-radius:0 0 14px 14px; background:var(--navy-soft); }
+@media(max-width:1050px) { .team-masonry { columns:2; } }
+@media(max-width:650px) { .team-masonry { columns:1; } .team > h2 { margin-bottom:64px; } .hero-story { padding:20px; } .hero-story-body { gap:16px; } }

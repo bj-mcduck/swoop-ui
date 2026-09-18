@@ -20,11 +20,13 @@ export default class extends Controller {
     const progress = Math.max(0, -this.element.getBoundingClientRect().top / height)
     this.copyTarget.style.transform = `translateY(${-progress * height}px)`
     this.cardTargets.forEach((card, index) => {
-      const phase = progress - (index + 1)
-      const y = phase < 0 ? -phase * height : phase > .55 ? -((phase - .55) / .45) * height : 0
-      const visible = phase > -.7 && phase < 1
+      const phase = progress - (1.35 + index * 1.65)
+      // A curved approach and departure both have zero velocity at the
+      // reading position. Spaced centers leave room between adjacent stories.
+      const y = phase < 0 ? Math.pow(-phase / .95, 2) * height : phase > .22 ? -Math.pow((phase - .22) / .95, 2) * height : 0
+      const visible = phase > -.95 && phase < 1.17
       card.style.transform = `translateY(${y}px)`
-      card.style.opacity = visible ? Math.min(1, (phase + .7) / .3, (1 - phase) / .25) : 0
+      card.style.opacity = visible ? Math.max(0, Math.min(1, (phase + .95) / .4, (1.17 - phase) / .4)) : 0
       card.toggleAttribute("inert", !visible)
       card.setAttribute("aria-hidden", String(!visible))
     })

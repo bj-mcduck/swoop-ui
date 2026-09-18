@@ -55,101 +55,28 @@
         <p class="hero-subtitle">Drive earlier diagnosis, better treatment decisions, and sustained adherence.</p>
         <a class="button button-lime" href="#contact">Let's Connect <span>→</span></a>
       </div>
-      <a href="#journey" class="scroll-cue">Scroll to explore <span>↓</span></a>
+      <a href="#team" class="scroll-cue">Scroll to explore <span>↓</span></a>
       <div class="hero-stories">
         <% [
-          ["Press Release", "Swoop Acquires Nimble, Adding Prescription Fulfillment and Pharmacy Connectivity to Portfolio", "Adding Nimble advances Swoop’s position as the only integrated ecosystem built to connect patients and HCPs with the right information to improve health outcomes.", "https://swoop.com/blog/swoop-acquires-nimble-adding-prescription-fulfillment-and-pharmacy-connectivity-to-portfolio/"],
-          ["Communities", "Half of patients ask about a specific brand in the doctor’s office, new survey finds", "Patients share their attitudes toward pharma advertising, ad exposures, and how they speak with HCPs about medicine in exclusive research.", "https://swoop.com/wp-content/uploads/2026/04/Ad-Perceptions-2026-Infographic.pdf"],
-          ["Privacy", "Swoop Answers Your Data Privacy Questions", "As states tighten privacy regulations, partnering with a compliant data provider isn’t just a best practice. It’s a necessity.", "https://swoop.com/wp-content/uploads/2025/05/Swoop-Answers-Your-Data-Privacy-Questions-2025-05.pdf"]
-        ].each_with_index do |(category, title, description, url), index| %>
+          ["Swoop Acquires Nimble, Adding Prescription Fulfillment and Pharmacy Connectivity to Portfolio", "Adding Nimble advances Swoop’s position as the only integrated ecosystem built to connect patients and HCPs with the right information to improve health outcomes."],
+          ["Half of patients ask about a specific brand in the doctor’s office, new survey finds", "Patients share their attitudes toward pharma advertising, ad exposures, and how they speak with HCPs about medicine in exclusive research."],
+          ["Swoop Answers Your Data Privacy Questions", "As states tighten privacy regulations, partnering with a compliant data provider isn’t just a best practice. It’s a necessity."]
+        ].each do |title, description| %>
           <article class="hero-story" data-hero-scroll-target="card" inert aria-hidden="true">
-            <p class="eyebrow"><%= category %> <span><%= index + 1 %> / 3</span></p>
             <h2><%= title %></h2>
-            <p><%= description %></p>
-            <a href="<%= url %>" target="_blank" rel="noopener">Learn more <span aria-hidden="true">→</span></a>
+            <div class="hero-story-body"><p><%= description %></p><button type="button" class="button concept-button">Learn more</button></div>
           </article>
         <% end %>
       </div>
     </div>
     </section>
 
-    <section class="journey section" id="journey">
-      <div class="section-heading">
-        <p class="eyebrow">The connected journey</p>
-        <h2>Individually our solutions are powerful. <span>Together, unmatched.</span></h2>
-        <p>From launch to maturity. From awareness to adherence.</p>
-      </div>
-      <div class="journey-grid">
-        <% @journey_steps.each_with_index do |(title, body), index| %>
-          <article class="journey-step reveal">
-            <span class="step-number">0<%= index + 1 %></span>
-            <div class="step-icon"><%= %w[⌖ ◌ ✦ ◎ ↗][index] %></div>
-            <h3><%= title %></h3>
-            <p><%= body %></p>
-          </article>
-        <% end %>
-      </div>
-    </section>
-
-    <section class="solutions section" id="solutions" data-controller="tabs">
-      <div class="section-heading split-heading">
-        <div>
-          <p class="eyebrow">Solutions</p>
-          <h2>Smarter signals.<br><span>Clearer decisions.</span></h2>
-        </div>
-        <p>One integrated platform answers the three questions that shape every successful healthcare engagement.</p>
-      </div>
-
-      <div class="tab-list" role="tablist">
-        <% @solution_groups.keys.each_with_index do |group, index| %>
-          <button type="button" role="tab" class="tab-button <%= "active" if index.zero? %>" data-tabs-target="tab" data-action="tabs#select" data-index="<%= index %>"><%= group %></button>
-        <% end %>
-      </div>
-
-      <% @solution_groups.each_with_index do |(group, solutions), group_index| %>
-        <div class="solution-grid" data-tabs-target="panel" <%= "hidden" unless group_index.zero? %>>
-          <% solutions.each_with_index do |(name, description), index| %>
-            <article class="solution-card">
-              <div class="solution-meta"><span>Solution</span><span>0<%= index + 1 %></span></div>
-              <h3><%= name %></h3>
-              <p><%= description %></p>
-              <a href="#contact" aria-label="Learn more about <%= name %>">Learn more <span>→</span></a>
-            </article>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-
-    <section class="privacy section" id="privacy">
-      <div class="privacy-intro">
-        <p class="eyebrow lime">Privacy, safety & trust</p>
-        <h2>Innovation built on a foundation of trust.</h2>
-        <p>Our privacy-by-design approach protects people while helping healthcare marketers make every connection more meaningful.</p>
-        <a class="text-link" href="#contact">Explore our privacy approach →</a>
-      </div>
-      <div class="trust-list">
-        <% [["50", "states compliant"], ["Zero", "knowledge methodology"], ["100%", "de-identified data"]].each_with_index do |(metric, label), index| %>
-          <div class="trust-row reveal"><span>0<%= index + 1 %></span><strong><%= metric %></strong><p><%= label %></p></div>
-        <% end %>
-      </div>
-    </section>
-
-    <section class="insights section" id="insights">
-      <div class="section-heading split-heading">
-        <div><p class="eyebrow">Success stories</p><h2>Signals turned<br><span>into impact.</span></h2></div>
-        <a class="text-link" href="#">View all insights →</a>
-      </div>
-      <div class="story-grid">
-        <article class="story-card featured"><div class="story-art story-art-one"></div><p class="eyebrow">Television</p><h3>From audience intelligence to measurable TV impact</h3><a href="#">Read case study →</a></article>
-        <article class="story-card"><div class="story-art story-art-two"></div><p class="eyebrow">Rx</p><h3>Transforming the patient journey through targeted activation</h3><a href="#">Read case study →</a></article>
-        <article class="story-card"><div class="story-art story-art-three"></div><p class="eyebrow">Predictive</p><h3>Reaching patients before the moments that matter</h3><a href="#">Read case study →</a></article>
-      </div>
-    </section>
+    <%= render "team" %>
 
     <section class="contact" id="contact">
       <p class="eyebrow lime">Let's connect</p>
       <h2>Ready to improve<br>patient outcomes?</h2>
-      <a class="button button-lime" href="mailto:hello@swoop.com">Start a conversation <span>→</span></a>
+      <button type="button" class="button button-lime">Start a conversation <span>→</span></button>
     </section>
   </main>
 
@@ -157,8 +84,8 @@
     <div class="footer-top"><a class="brand brand-light" href="#top">sw<span class="brand-mark">o</span>op</a><p>Better signals.<br>Better connections.<br>Better outcomes.</p></div>
     <div class="footer-grid">
       <div><p class="eyebrow">New York</p><p>228 Park Ave S.<br>New York, NY 10003</p></div>
-      <div><p class="eyebrow">Explore</p><a href="#solutions">Solutions</a><a href="#privacy">Privacy</a><a href="#insights">Insights</a></div>
-      <div><p class="eyebrow">Connect</p><a href="mailto:hello@swoop.com">hello@swoop.com</a><a href="#">LinkedIn</a><a href="#">YouTube</a></div>
+      <div><p class="eyebrow">Explore</p><a href="#top">Home</a><a href="#team">Our team</a></div>
+      <div><p class="eyebrow">Connect</p><span>hello@swoop.com</span></div>
     </div>
     <div class="footer-bottom"><span>© <%= Time.current.year %> Swoop.com, Inc.</span><span>Concept reproduction for portfolio exploration.</span></div>
   </footer>

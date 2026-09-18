@@ -1,0 +1,24 @@
+<section class="team section" id="team" aria-labelledby="team-heading">
+  <h2 id="team-heading">Our Leadership Team</h2>
+  <div class="team-masonry">
+    <% [
+      ["Ron Elwell", "Chief Executive Officer and Co-Founder", "f/f3/Original_Finn.png/revision/latest?cb=20200424114126", "Ron’s career spans technology and digital media, with leadership roles at Bessemer Ventures, Goal.com and Octave Communications."],
+      ["Simeon Simeonov", "Chief Technology Officer and Co-Founder", "8/81/BMO.png/revision/latest?cb=20200613123757", "Sim builds teams working across AI, big data and privacy technology. His previous roles include founding CTO at Evidon and emerging technology leadership at Macromedia."],
+      ["Scott Rines", "President", "3/3b/Jakesalad.png/revision/latest?cb=20240905203644", "Scott develops client teams across healthcare and consumer goods, drawing on experience at Government Solutions Group and Catalina Marketing."],
+      ["Katie Carr", "Chief Revenue Officer", "0/00/Princess_Bubblegum.png/revision/latest?cb=20260116090952", "Katie leads client-facing teams helping life sciences brands engage patients and healthcare providers to improve outcomes."],
+      ["Eric Peacock", "Chief Patient Officer", "3/3d/Young_Ice_King_without_crown.png/revision/latest?cb=20260116090049", "Eric champions people living with chronic conditions, bringing patient perspectives into pharmaceutical research and marketing through Swoop’s communities."],
+      ["Sara Michael", "Executive Vice President, Content", "8/80/Marceline1.png/revision/latest?cb=20210813211029", "Sara leads content across Swoop’s patient communities. Previously, she guided editorial and business strategy for health brands at Dotdash Meredith."],
+      ["Beth Luce", "EVP, Strategic Partnerships and Business Operations", "9/9f/Lumpy_Space.png/revision/latest?cb=20110730224431", "Beth connects healthcare, technology and consulting expertise to support life sciences organizations throughout the brand lifecycle."],
+      ["Kevin Elwell", "VP of Product Strategy and Privacy Engineering", "a/ad/1ATLadyRainicornLook.png/revision/latest?cb=20190807133156", "Kevin develops privacy-safe audience strategies, combining hands-on marketing experience with de-identified data."],
+      ["Lauren Buczkiewicz", "Vice President, Human Resources", "3/3e/FlamePrincess.png/revision/latest?cb=20160314152748", "Lauren focuses on organizational development, performance and employee engagement, following roles at Publicis Health and Real Chemistry."]
+    ].each_with_index do |(name, title, photo, description), index| %>
+      <article class="team-card">
+        <div class="team-card-heading">
+          <img src="/images/characters/avatar-<%= index %>.webp" alt="" width="112" height="112" loading="lazy">
+          <div><h3><%= name %></h3><p><%= title %></p></div>
+        </div>
+        <p class="team-bio"><%= description %></p>
+      </article>
+    <% end %>
+  </div>
+</section>
