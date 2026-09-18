@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    this.context = this.element.getContext("2d")
+    this.drawingContext = this.element.getContext("2d")
     this.pointer = { x: -1000, y: -1000, active: false }
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     this.resize = this.resize.bind(this)
@@ -31,22 +31,22 @@ export default class extends Controller {
     this.height = Math.max(bounds.height, 1)
     this.element.width = this.width * ratio
     this.element.height = this.height * ratio
-    this.context.setTransform(ratio, 0, 0, ratio, 0, 0)
+    this.drawingContext.setTransform(ratio, 0, 0, ratio, 0, 0)
     this.buildParticles()
     cancelAnimationFrame(this.animationFrame)
     this.animationFrame = requestAnimationFrame(this.frame)
   }
 
   buildParticles() {
-    const count = Math.min(620, Math.max(360, Math.round(this.width * .53)))
+    const count = Math.min(1200, Math.max(600, Math.round(this.width)))
     const colors = ["#1c8ece", "#21b3e8", "#7dd7f4", "#ffffff", "#b3e821"]
     this.particles = Array.from({ length: count }, (_, index) => ({
       t: (index / count) * Math.PI * 2 + Math.random() * .08,
       offset: (Math.random() - .5) * this.height * .29,
       depth: Math.random(),
-      speed: (.000065 + Math.random() * .000055) * (index % 7 === 0 ? -1 : 1),
+      speed: (.000025 + Math.random() * .000015) * (index % 7 === 0 ? -1 : 1),
       size: .65 + Math.random() * 1.55,
-      color: colors[index % colors.length],
+      color: index % 23 === 0 ? colors[4] : colors[index % 3],
       opacity: .18 + Math.random() * .48,
       x: 0,
       y: 0
@@ -63,15 +63,17 @@ export default class extends Controller {
   leavePointer() { this.pointer.active = false }
 
   frame(time) {
-    const ctx = this.context
+    const ctx = this.drawingContext
+    const elapsed = Math.min(time - (this.lastTime || time), 40)
+    this.lastTime = time
     ctx.clearRect(0, 0, this.width, this.height)
     const centerX = this.width / 2
     const centerY = this.height * .52
     const radiusX = this.width * .40
-    const radiusY = this.height * .40
+    const radiusY = this.height * .65
 
     this.particles.forEach((particle) => {
-      if (!this.reducedMotion) particle.t += particle.speed * 16.67
+      if (!this.reducedMotion) particle.t += particle.speed * elapsed
       const sin = Math.sin(particle.t)
       const cos = Math.cos(particle.t)
       const dx = radiusX * cos
@@ -79,7 +81,7 @@ export default class extends Controller {
       const magnitude = Math.hypot(dx, dy) || 1
       const normalX = -dy / magnitude
       const normalY = dx / magnitude
-      const pulse = Math.sin(time * .00018 + particle.t * 3) * 5 * particle.depth
+      const pulse = this.reducedMotion ? 0 : Math.sin(time * .00018 + particle.t * 3) * 5 * particle.depth
 
       let x = centerX + radiusX * sin + normalX * (particle.offset + pulse)
       let y = centerY + radiusY * sin * cos + normalY * (particle.offset + pulse)
@@ -102,11 +104,11 @@ export default class extends Controller {
     ctx.lineWidth = .55
     for (let index = 0; index < this.particles.length; index += 1) {
       const particle = this.particles[index]
-      for (let step = 1; step <= 3; step += 1) {
+      for (let step = 1; step <= 12; step += 1) {
         const neighbor = this.particles[(index + step) % this.particles.length]
         const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
         if (distance < 82) {
-          ctx.strokeStyle = `rgba(75, 174, 220, ${.16 * (1 - distance / 82)})`
+          ctx.strokeStyle = `rgba(75, 174, 220, ${.28 * (1 - distance / 82)})`
           ctx.beginPath()
           ctx.moveTo(particle.x, particle.y)
           ctx.lineTo(neighbor.x, neighbor.y)

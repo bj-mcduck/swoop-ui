@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap");
 
 :root { --navy:#000022; --navy-soft:#071536; --ink:#0b1230; --blue:#1c8ece; --lime:#b3e821; --sky:#c9edff; --mist:#f2f6f7; --white:#fff; --line:rgba(8,19,48,.16); --container:1120px; --gutter:1.5rem; --page-edge:max(var(--gutter),calc((100vw - var(--container))/2)); }
 * { box-sizing:border-box; }
@@ -186,4 +186,18 @@ footer { padding:5rem var(--page-edge) 2rem; color:white; background:#050617; }
   .footer-grid { grid-template-columns:1fr; gap:2rem; }
   .mega-menu-links { grid-template-columns:1fr; }
 }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { animation:none!important; transition:none!important; } .particle-infinity animateMotion { display:none; } }
+.hero-scroll { position:relative; height:450svh; background:#040a22; }
+.hero-scroll .hero { position:sticky; top:0; height:100svh; min-height:0; padding:clamp(125px,18vh,200px) var(--page-edge) 4rem; background:#040a22; font-family:"Lato",sans-serif; }
+.hero-scroll .hero-copy { width:min(100%,1000px); }
+.hero-scroll .hero h1 { font:400 clamp(44px,6.15vw,88px)/1.12 "Lato",sans-serif; letter-spacing:0; }
+.hero-scroll .hero-subtitle { max-width:630px; margin:1.65rem 0 1rem; font:400 clamp(21px,2.3vw,30px)/1.13 "Lato",sans-serif; }
+.hero-scroll .particle-infinity { top:0; left:50%; width:100%; height:100%; pointer-events:none; opacity:.72; }
+.hero-stories { position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; z-index:3; }
+.hero-story { grid-area:1/1; width:min(760px,calc(100% - 48px)); padding:clamp(24px,4vw,56px); border:1px solid #324258; border-radius:20px; background:rgba(4,14,36,.96); opacity:0; color:white; will-change:transform,opacity; }
+.hero-story:not([inert]) { pointer-events:auto; }
+.hero-story .eyebrow { color:var(--lime); display:flex; justify-content:space-between; }
+.hero-story h2 { font:400 clamp(28px,3.5vw,48px)/1.12 "Lato",sans-serif; margin:24px 0; }
+.hero-story > p:not(.eyebrow) { font-size:clamp(17px,1.7vw,22px); line-height:1.5; color:#c7d7e5; }
+.hero-story a { display:flex; justify-content:space-between; padding-top:24px; margin-top:24px; border-top:1px solid #324258; color:var(--lime); }
+@media (max-width:650px) { .site-header.is-scrolled { min-height:72px; } .hero-scroll .hero { padding-top:115px; } .hero-scroll .hero h1 { font-size:clamp(35px,8.4vw,48px); } }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { animation:none!important; transition:none!important; } }

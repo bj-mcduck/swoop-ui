@@ -47,21 +47,30 @@
   </div>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero-scroll" data-controller="hero-scroll">
+    <div class="hero">
       <canvas class="particle-infinity" data-controller="swarm" aria-hidden="true"></canvas>
-      <div class="hero-copy reveal">
-        <p class="eyebrow lime">Connected health intelligence</p>
+      <div class="hero-copy" data-hero-scroll-target="copy">
         <h1><span>Improving patient outcomes</span> by connecting the signals that matter</h1>
         <p class="hero-subtitle">Drive earlier diagnosis, better treatment decisions, and sustained adherence.</p>
         <a class="button button-lime" href="#contact">Let's Connect <span>→</span></a>
       </div>
       <a href="#journey" class="scroll-cue">Scroll to explore <span>↓</span></a>
-    </section>
-
-    <section class="news-strip" aria-label="Featured insight">
-      <p class="eyebrow">Latest news</p>
-      <h2>Swoop expands its connected ecosystem for better patient outcomes.</h2>
-      <a href="#insights">Read the story <span>↗</span></a>
+      <div class="hero-stories">
+        <% [
+          ["Press Release", "Swoop Acquires Nimble, Adding Prescription Fulfillment and Pharmacy Connectivity to Portfolio", "Adding Nimble advances Swoop’s position as the only integrated ecosystem built to connect patients and HCPs with the right information to improve health outcomes.", "https://swoop.com/blog/swoop-acquires-nimble-adding-prescription-fulfillment-and-pharmacy-connectivity-to-portfolio/"],
+          ["Communities", "Half of patients ask about a specific brand in the doctor’s office, new survey finds", "Patients share their attitudes toward pharma advertising, ad exposures, and how they speak with HCPs about medicine in exclusive research.", "https://swoop.com/wp-content/uploads/2026/04/Ad-Perceptions-2026-Infographic.pdf"],
+          ["Privacy", "Swoop Answers Your Data Privacy Questions", "As states tighten privacy regulations, partnering with a compliant data provider isn’t just a best practice. It’s a necessity.", "https://swoop.com/wp-content/uploads/2025/05/Swoop-Answers-Your-Data-Privacy-Questions-2025-05.pdf"]
+        ].each_with_index do |(category, title, description, url), index| %>
+          <article class="hero-story" data-hero-scroll-target="card" inert aria-hidden="true">
+            <p class="eyebrow"><%= category %> <span><%= index + 1 %> / 3</span></p>
+            <h2><%= title %></h2>
+            <p><%= description %></p>
+            <a href="<%= url %>" target="_blank" rel="noopener">Learn more <span aria-hidden="true">→</span></a>
+          </article>
+        <% end %>
+      </div>
+    </div>
     </section>
 
     <section class="journey section" id="journey">
