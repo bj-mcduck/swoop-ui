@@ -8,6 +8,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select ".hero-story", count: 3
     assert_select ".hero-story .eyebrow", count: 0
     assert_select ".hero-story button", count: 3
+    assert_select ".scroll-cue[data-navigation-target='scrollCue']", count: 1
     assert_select ".team-card", count: 9
     assert_select ".team-card img", count: 9
     assert_select ".team-card button", count: 0

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["header", "center", "menu", "panel", "stage", "indicator", "eyebrow", "title", "description", "links", "toggle", "search", "searchInput", "searchButton"]
+  static targets = ["header", "scrollCue", "center", "menu", "panel", "stage", "indicator", "eyebrow", "title", "description", "links", "toggle", "search", "searchInput", "searchButton"]
 
   connect() {
     this.content = {
@@ -29,7 +29,11 @@ export default class extends Controller {
     this.indicatorAnimation?.cancel()
   }
 
-  updateHeader() { this.headerTarget.classList.toggle("is-scrolled", window.scrollY > 24) }
+  updateHeader() {
+    const isScrolled = window.scrollY > 24
+    this.headerTarget.classList.toggle("is-scrolled", isScrolled)
+    this.scrollCueTarget.classList.toggle("is-scrolled", isScrolled)
+  }
 
   toggleMobile() {
     const open = this.menuTarget.classList.toggle("open")

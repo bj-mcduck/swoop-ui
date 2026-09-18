@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: uistyle-swoop
+    runtime: ruby
+    plan: free
+    buildCommand: bundle install && bin/rails assets:precompile
+    startCommand: bundle exec puma -C config/puma.rb
+    healthCheckPath: /up
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: "1"
