@@ -102,10 +102,15 @@ export default class extends Controller {
     })
 
     ctx.lineWidth = .55
-    for (let index = 0; index < this.particles.length; index += 1) {
-      const particle = this.particles[index]
+    // Reconnect nearby phases as particles pass each other, keeping the swarm
+    // dense instead of gradually losing its links over time.
+    const fullTurn = Math.PI * 2
+    const ordered = [...this.particles].sort((a, b) =>
+      ((a.t % fullTurn + fullTurn) % fullTurn) - ((b.t % fullTurn + fullTurn) % fullTurn))
+    for (let index = 0; index < ordered.length; index += 1) {
+      const particle = ordered[index]
       for (let step = 1; step <= 12; step += 1) {
-        const neighbor = this.particles[(index + step) % this.particles.length]
+        const neighbor = ordered[(index + step) % ordered.length]
         const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
         if (distance < 82) {
           ctx.strokeStyle = `rgba(75, 174, 220, ${.28 * (1 - distance / 82)})`
